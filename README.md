@@ -8,6 +8,6 @@ NodeJS, NestJS, MongoDB, ...
 
 ## How to run
 
-```bash
-$ npm start
+```
+npm start
 ```
