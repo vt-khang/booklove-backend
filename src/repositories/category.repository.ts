@@ -1,4 +1,4 @@
-import { InternalServerErrorException } from '@nestjs/common';
+import { InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Category } from '../entities/category.entity';
@@ -15,5 +15,20 @@ export class CategoryRepository {
     }
 
     return categories;
+  }
+
+  async getCategoryByKeyword(keyword: String) {
+    let category: Category;
+    try {
+      category = await this.categoryModel.findOne({ keyword: keyword }).exec();
+    } catch (error) {
+      throw new InternalServerErrorException(error);
+    }
+
+    if (!category) {
+      throw new NotFoundException('The category with this keyword does not exist');
+    }
+
+    return category;
   }
 }

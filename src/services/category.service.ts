@@ -8,4 +8,8 @@ export class CategoryService {
   async getCategories() {
     return await this.categoryRepository.getCategories();
   }
+
+  async getCategoryByKeyword(keyword: String) {
+    return await this.categoryRepository.getCategoryByKeyword(keyword);
+  }
 }
