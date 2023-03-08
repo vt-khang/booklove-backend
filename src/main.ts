@@ -11,10 +11,7 @@ async function bootstrap() {
   const config = new ConfigService();
   const port = await config.getPortConfig();
 
-  await app.listen(port);
-
-  console.log(`Listening on port: ${port}`);
-  console.log(`Explore api on http://localhost:${port}/api/v1`);
+  await app.listen(process.env.PORT || port);
 
   return app;
 }
